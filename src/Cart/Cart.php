@@ -25,13 +25,8 @@ class Cart
             throw new CartException('Products match error');
         }
 
-        array_map(function($product) {
-            $this->total += $product->getPrice();
-        }, $this->products['R']);
-
-        array_map(function($product) {
-            $this->total += $product->getPrice();
-        }, $this->products['G']);
+        $this->updateTotal($this->products['R']);
+        $this->updateTotal($this->products['G']);
 
         $this->total *= 0.75;
     }
@@ -40,4 +35,12 @@ class Cart
     {
         return $this->total;
     }
+
+    protected function updateTotal($products)
+    {
+        array_map(function($product) {
+            $this->total += $product->getPrice();
+        }, $products);
+    }
+
 }
