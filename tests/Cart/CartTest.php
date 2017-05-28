@@ -18,7 +18,7 @@ class CartTest extends TestCase
             new Product('Red 1', 200, 'R'),
             new Product('Red 2', 160, 'R'),
             new Product('Green 1', 80, 'G'),
-            new Product('Green 2', 160, 'G'),
+            new Product('Green 2', 100, 'G'),
         ];
     }
 
@@ -42,4 +42,21 @@ class CartTest extends TestCase
         $this->cart->checkout();
         $this->assertEquals(210, $this->cart->getTotal());
     }
+
+    public function testAddRed2ProductAndGreen2Product()
+    {
+        $this->cart->addProduct($this->products[1]); // Red 2
+        $this->cart->addProduct($this->products[3]); // Green 2
+        $this->cart->checkout();
+        $this->assertEquals(195, $this->cart->getTotal());
+    }
+
+    public function testAddRed1ProductAndGreen2Product()
+    {
+        $this->cart->addProduct($this->products[0]); // Red 1
+        $this->cart->addProduct($this->products[3]); // Green 2
+        $this->cart->checkout();
+        $this->assertEquals(225, $this->cart->getTotal());
+    }
+
 }
