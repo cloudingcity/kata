@@ -59,4 +59,22 @@ class CartTest extends TestCase
         $this->assertEquals(225, $this->cart->getTotal());
     }
 
+    public function testAddRed1AndRed2AndGreen1()
+    {
+        $this->expectException(CartException::class);
+        $this->cart->addProduct($this->products[0]); // Red 1
+        $this->cart->addProduct($this->products[1]); // Red 2
+        $this->cart->addProduct($this->products[2]); // Green 1
+        $this->cart->checkout();
+    }
+
+    public function testAddRed1AndGreen1AndGreen2()
+    {
+        $this->expectException(CartException::class);
+        $this->cart->addProduct($this->products[0]); // Red 1
+        $this->cart->addProduct($this->products[2]); // Green 1
+        $this->cart->addProduct($this->products[3]); // Green 2
+        $this->cart->checkout();
+    }
+
 }
