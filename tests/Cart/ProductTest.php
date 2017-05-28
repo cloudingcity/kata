@@ -1,7 +1,7 @@
 <?php
 
-use Clouding\kata\Cart\Product;
 use PHPUnit\Framework\TestCase;
+use Clouding\kata\Cart\Product;
 
 class ProductTest extends TestCase
 {

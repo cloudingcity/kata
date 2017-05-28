@@ -34,4 +34,12 @@ class CartTest extends TestCase
         $this->cart->addProduct($this->products[0]);
         $this->cart->checkout();
     }
+
+    public function testAddOneRedProductAndOneGreenProduct()
+    {
+        $this->cart->addProduct($this->products[0]); // Red 1
+        $this->cart->addProduct($this->products[2]); // Green 1
+        $this->cart->checkout();
+        $this->assertEquals(210, $this->cart->getTotal());
+    }
 }
