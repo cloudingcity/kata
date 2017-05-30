@@ -28,8 +28,14 @@ class BowlingTest extends TestCase
         for ($i = 0; $i < 20; $i++) {
             $this->bowling->roll(0);
         }
-        $score = $this->bowling->score();
-        $this->assertEquals(0, $score);
+        $this->assertEquals(0, $this->bowling->score());
     }
-    
+
+    public function testScore20()
+    {
+        for ($i = 0; $i < 20; $i++) {
+            $this->bowling->roll(1);
+        }
+        $this->assertEquals(20, $this->bowling->score());
+    }
 }
