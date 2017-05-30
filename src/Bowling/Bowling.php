@@ -16,16 +16,25 @@ class Bowling
     public function score(): int
     {
         $score = 0;
-        $i = 0;
+        $rollIndex = 0;
         for ($frame = 0; $frame < 10; $frame++) {
-            if ($this->rolls[$i] + $this->rolls[$i + 1] == 10) {
-                $score += 10 + $this->rolls[$i + 2];
+            if ($this->isSpare($rollIndex)) {
+                $score += 10 + $this->rolls[$rollIndex + 2];
             } else {
-                $score += $this->rolls[$i] + $this->rolls[$i + 1];
+                $score += $this->rolls[$rollIndex] + $this->rolls[$rollIndex + 1];
             }
-            $i += 2;
+            $rollIndex += 2;
         }
 
         return $score;
+    }
+
+    /**
+     * @param $rollIndex
+     * @return bool
+     */
+    protected function isSpare($rollIndex): bool
+    {
+        return $this->rolls[$rollIndex] + $this->rolls[$rollIndex + 1] == 10;
     }
 }
