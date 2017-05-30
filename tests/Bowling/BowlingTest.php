@@ -25,17 +25,20 @@ class BowlingTest extends TestCase
 
     public function testScore0()
     {
-        for ($i = 0; $i < 20; $i++) {
-            $this->bowling->roll(0);
-        }
+        $this->rollMany(0, 20);
         $this->assertEquals(0, $this->bowling->score());
     }
 
     public function testScore20()
     {
-        for ($i = 0; $i < 20; $i++) {
-            $this->bowling->roll(1);
-        }
+        $this->rollMany(1, 20);
         $this->assertEquals(20, $this->bowling->score());
+    }
+
+    public function rollMany($pins, $times)
+    {
+        for ($i = 0; $i < $times; $i++) {
+            $this->bowling->roll($pins);
+        }
     }
 }
