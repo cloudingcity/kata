@@ -38,9 +38,8 @@ class Cart
 
     protected function updateTotal($products)
     {
-        array_map(function($product) {
+        array_map(function ($product) {
             $this->total += $product->getPrice();
         }, $products);
     }
-
 }
