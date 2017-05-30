@@ -52,6 +52,15 @@ class BowlingTest extends TestCase
         $this->assertEquals(19, $this->bowling->score());
     }
 
+    public function testScore24()
+    {
+        $this->bowling->roll(10);
+        $this->bowling->roll(3);
+        $this->bowling->roll(4);
+        $this->rollMany(0, 16);
+        $this->assertEquals(24, $this->bowling->score());
+    }
+
     public function rollMany($pins, $times)
     {
         for ($i = 0; $i < $times; $i++) {
