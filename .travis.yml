@@ -4,11 +4,15 @@ php:
   - 7.2
 
 install:
-  - composer install
+  - travis_retry composer self-update
+  - travis_retry composer install --no-interaction --prefer-source --dev
 
 script:
   - vendor/bin/phpunit
   - vendor/bin/phpcs -p
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 
 notifications:
   email:
