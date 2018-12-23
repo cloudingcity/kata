@@ -8,7 +8,7 @@ install:
 
 script:
   - vendor/bin/phpunit
-  - vendor/bin/phpcs --standard=./phpcs.xml
+  - vendor/bin/phpcs -p
 
 notifications:
   email:

@@ -1,7 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
+namespace Clouding\Kata\Tests;
+
 use PHPUnit\Framework\TestCase;
-use Clouding\kata\Cart\Product;
+use Clouding\Kata\Cart\Product;
 
 class ProductTest extends TestCase
 {

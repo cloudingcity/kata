@@ -1,17 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: clouding
- * Date: 2017/5/30
- * Time: 下午 08:37
- */
 
-use Clouding\kata\Bowling\Bowling;
+declare(strict_types=1);
+
+namespace Clouding\Kata\Tests;
+
+use Clouding\Kata\Bowling\Bowling;
 use PHPUnit\Framework\TestCase;
 
 class BowlingTest extends TestCase
 {
-    private $bowling = null;
+    protected $bowling = null;
 
     public function setUp()
     {
@@ -88,7 +86,7 @@ class BowlingTest extends TestCase
         $this->bowling->roll(8);
     }
 
-    private function rollStrike(): void
+    private function rollStrike()
     {
         $this->bowling->roll(10);
     }

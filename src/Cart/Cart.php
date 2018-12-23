@@ -1,15 +1,17 @@
 <?php
 
-namespace Clouding\kata\Cart;
+declare(strict_types=1);
+
+namespace Clouding\Kata\Cart;
 
 class Cart
 {
-    private $products = [
+    protected $products = [
         'R' => [],
         'G' => [],
     ];
 
-    private $total = 0;
+    protected $total = 0;
 
     public function addProduct(Productable $product)
     {
@@ -31,7 +33,7 @@ class Cart
         $this->total *= 0.75;
     }
 
-    public function getTotal()
+    public function getTotal(): float
     {
         return $this->total;
     }

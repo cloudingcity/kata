@@ -1,10 +1,13 @@
 <?php
 
-namespace Clouding\kata\Bowling;
+declare(strict_types=1);
+
+namespace Clouding\Kata\Bowling;
 
 class Bowling
 {
     protected $rolls = [];
+
     protected $rollIndex = 0;
 
     public function __construct()
@@ -38,37 +41,21 @@ class Bowling
         return $score;
     }
 
-    /**
-     * @param $rollIndex
-     * @return bool
-     */
     protected function isStrike($rollIndex): bool
     {
         return $this->rolls[$rollIndex] == 10;
     }
 
-    /**
-     * @param $rollIndex
-     * @return int
-     */
     protected function strikeBonus($rollIndex): int
     {
         return $this->rolls[$rollIndex + 1] + $this->rolls[$rollIndex + 2];
     }
 
-    /**
-     * @param $rollIndex
-     * @return bool
-     */
     protected function isSpare($rollIndex): bool
     {
         return $this->rolls[$rollIndex] + $this->rolls[$rollIndex + 1] == 10;
     }
 
-    /**
-     * @param $rollIndex
-     * @return int
-     */
     protected function spareBonus($rollIndex): int
     {
         return $this->rolls[$rollIndex + 2];
