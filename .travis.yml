@@ -18,5 +18,4 @@ notifications:
   email:
     recipients:
       - ghost0436@gmail.com
-    on_success: always
     on_failure: always
