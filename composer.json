@@ -1,4 +1,6 @@
 {
+    "name": "cloudingcity/kata",
+    "description": "Kata.",
     "require": {
         "php": "^7.2"
     },
@@ -15,5 +17,8 @@
         "psr-4": {
             "Clouding\\Kata\\Tests\\": "tests/"
         }
+    },
+    "config": {
+        "sort-packages": true
     }
 }
