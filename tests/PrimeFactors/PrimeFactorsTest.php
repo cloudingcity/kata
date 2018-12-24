@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class PrimeFactorsTest extends TestCase
 {
-    public function provider()
+    public function provider(): array
     {
         return [
             [1, []],
@@ -27,11 +27,11 @@ class PrimeFactorsTest extends TestCase
     /**
      * @dataProvider provider
      *
-     * @param int $number
+     * @param int   $number
      * @param array $expected
      */
     public function testPrimeFactors(int $number, array $expected)
     {
-        $this->assertSame(PrimeFactors::generate($number), $expected);
+        $this->assertSame($expected, PrimeFactors::generate($number));
     }
 }
