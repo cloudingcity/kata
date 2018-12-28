@@ -20,5 +20,13 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "scripts": {
+        "test": [
+            "@phpunit",
+            "@phpcs"
+        ],
+        "phpunit": "phpunit --verbose",
+        "phpcs": "phpcs -p"
     }
 }
