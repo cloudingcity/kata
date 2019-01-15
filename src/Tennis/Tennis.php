@@ -145,10 +145,9 @@ class Tennis
      */
     protected function generalScore(): string
     {
-        if ($this->tied()) {
-            return static::SCORE_MAPPING[$this->player1->points] . '-All';
-        }
+        $left = static::SCORE_MAPPING[$this->player1->points];
+        $right = ($this->tied()) ? 'All' : static::SCORE_MAPPING[$this->player2->points];
 
-        return static::SCORE_MAPPING[$this->player1->points] . '-' . static::SCORE_MAPPING[$this->player2->points];
+        return sprintf('%s-%s', $left, $right);
     }
 }
