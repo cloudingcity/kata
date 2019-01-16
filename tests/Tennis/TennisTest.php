@@ -13,7 +13,7 @@ class TennisTest extends TestCase
 {
     use MockeryPHPUnitIntegration;
 
-    public function scoreProvider()
+    public function provider()
     {
         return [
             [['Pei', 0], ['Jack', 0], 'Love-All'],
@@ -29,7 +29,7 @@ class TennisTest extends TestCase
     }
 
     /**
-     * @dataProvider scoreProvider
+     * @dataProvider provider
      */
     public function testScore($player1, $player2, $expected)
     {
