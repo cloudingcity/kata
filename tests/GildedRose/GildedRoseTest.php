@@ -5,53 +5,35 @@ declare(strict_types=1);
 namespace Clouding\Kata\Tests\GildedRose;
 
 use Clouding\Kata\GildedRose\GildedRose;
+use Clouding\Kata\GildedRose\Item\BackstagePass;
+use Clouding\Kata\GildedRose\Item\Brie;
+use Clouding\Kata\GildedRose\Item\Normal;
+use Clouding\Kata\GildedRose\Item\Sulfura;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class GildedRoseTest extends TestCase
 {
-    public function provider()
+    public function testOf()
     {
-        return [
-            [['name' => 'normal', 'quality' => 10, 'sellIn' => 5], ['quality' => 9, 'sellIn' => 4]],
-            [['name' => 'normal', 'quality' => 10, 'sellIn' => 0], ['quality' => 8, 'sellIn' => -1]],
-            [['name' => 'normal', 'quality' => 10, 'sellIn' => -5], ['quality' => 8, 'sellIn' => -6]],
-            [['name' => 'normal', 'quality' => 0, 'sellIn' => 5], ['quality' => 0, 'sellIn' => 4]],
+        $item = GildedRose::of('normal', 1, 1);
+        $this->assertInstanceOf(Normal::class, $item);
 
-            [['name' => 'Aged Brie', 'quality' => 10, 'sellIn' => 5], ['quality' => 11, 'sellIn' => 4]],
-            [['name' => 'Aged Brie', 'quality' => 50, 'sellIn' => 5], ['quality' => 50, 'sellIn' => 4]],
-            [['name' => 'Aged Brie', 'quality' => 10, 'sellIn' => 0], ['quality' => 12, 'sellIn' => -1]],
-            [['name' => 'Aged Brie', 'quality' => 50, 'sellIn' => 0], ['quality' => 50, 'sellIn' => -1]],
-            [['name' => 'Aged Brie', 'quality' => 49, 'sellIn' => 0], ['quality' => 50, 'sellIn' => -1]],
-            [['name' => 'Aged Brie', 'quality' => 10, 'sellIn' => -10], ['quality' => 12, 'sellIn' => -11]],
-            [['name' => 'Aged Brie', 'quality' => 50, 'sellIn' => -10], ['quality' => 50, 'sellIn' => -11]],
+        $item = GildedRose::of('Aged Brie', 1, 1);
+        $this->assertInstanceOf(Brie::class, $item);
 
-            [['name' => 'Sulfuras, Hand of Ragnaros', 'quality' => 10, 'sellIn' => 5], ['quality' => 10, 'sellIn' => 5]],
-            [['name' => 'Sulfuras, Hand of Ragnaros', 'quality' => 10, 'sellIn' => -1], ['quality' => 10, 'sellIn' => -1]],
+        $item = GildedRose::of('Sulfuras, Hand of Ragnaros', 1, 1);
+        $this->assertInstanceOf(Sulfura::class, $item);
 
-            [['name' => 'Backstage passes to a TAFKAL80ETC convert', 'quality' => 10, 'sellIn' => 11], ['quality' => 11, 'sellIn' => 10]],
-            [['name' => 'Backstage passes to a TAFKAL80ETC convert', 'quality' => 10, 'sellIn' => 10], ['quality' => 12, 'sellIn' => 9]],
-            [['name' => 'Backstage passes to a TAFKAL80ETC convert', 'quality' => 50, 'sellIn' => 10], ['quality' => 50, 'sellIn' => 9]],
-            [['name' => 'Backstage passes to a TAFKAL80ETC convert', 'quality' => 10, 'sellIn' => 5], ['quality' => 13, 'sellIn' => 4]],
-            [['name' => 'Backstage passes to a TAFKAL80ETC convert', 'quality' => 50, 'sellIn' => 5], ['quality' => 50, 'sellIn' => 4]],
-            [['name' => 'Backstage passes to a TAFKAL80ETC convert', 'quality' => 10, 'sellIn' => 1], ['quality' => 13, 'sellIn' => 0]],
-            [['name' => 'Backstage passes to a TAFKAL80ETC convert', 'quality' => 50, 'sellIn' => 1], ['quality' => 50, 'sellIn' => 0]],
-            [['name' => 'Backstage passes to a TAFKAL80ETC convert', 'quality' => 10, 'sellIn' => 0], ['quality' => 0, 'sellIn' => -1]],
-            [['name' => 'Backstage passes to a TAFKAL80ETC convert', 'quality' => 10, 'sellIn' => -1], ['quality' => 0, 'sellIn' => -2]],
-        ];
+        $item = GildedRose::of('Backstage passes to a TAFKAL80ETC convert', 1, 1);
+        $this->assertInstanceOf(BackstagePass::class, $item);
     }
 
-    /**
-     * @dataProvider provider
-     *
-     * @param array $goods
-     * @param array $expected
-     */
-    public function testTick(array $goods, array $expected)
+    public function testException()
     {
-        $item = GildedRose::of($goods['name'], $goods['quality'], $goods['sellIn']);
-        $item->tick();
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('ABC is not supported.');
 
-        $this->assertSame($expected['quality'], $item->quality);
-        $this->assertSame($expected['sellIn'], $item->sellIn);
+        GildedRose::of('ABC', 1, 1);
     }
 }
