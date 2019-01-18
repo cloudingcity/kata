@@ -6,6 +6,7 @@ namespace Clouding\Kata\GildedRose;
 
 use Clouding\Kata\GildedRose\Item\BackstagePass;
 use Clouding\Kata\GildedRose\Item\Brie;
+use Clouding\Kata\GildedRose\Item\Conjured;
 use Clouding\Kata\GildedRose\Item\Normal;
 use Clouding\Kata\GildedRose\Item\Sulfura;
 use InvalidArgumentException;
@@ -25,6 +26,7 @@ class GildedRose
         'Aged Brie' => Brie::class,
         'Backstage passes to a TAFKAL80ETC convert' => BackstagePass::class,
         'Sulfuras, Hand of Ragnaros' => Sulfura::class,
+        'Conjured Mana Cake' => Conjured::class,
     ];
 
     /**

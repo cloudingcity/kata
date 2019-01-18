@@ -7,6 +7,7 @@ namespace Clouding\Kata\Tests\GildedRose;
 use Clouding\Kata\GildedRose\GildedRose;
 use Clouding\Kata\GildedRose\Item\BackstagePass;
 use Clouding\Kata\GildedRose\Item\Brie;
+use Clouding\Kata\GildedRose\Item\Conjured;
 use Clouding\Kata\GildedRose\Item\Normal;
 use Clouding\Kata\GildedRose\Item\Sulfura;
 use InvalidArgumentException;
@@ -27,6 +28,9 @@ class GildedRoseTest extends TestCase
 
         $item = GildedRose::of('Backstage passes to a TAFKAL80ETC convert', 1, 1);
         $this->assertInstanceOf(BackstagePass::class, $item);
+        
+        $item = GildedRose::of('Conjured Mana Cake', 1, 1);
+        $this->assertInstanceOf(Conjured::class, $item);
     }
 
     public function testException()
