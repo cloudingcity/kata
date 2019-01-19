@@ -11,20 +11,26 @@ class BackstagePass extends Item
      */
     public function tick()
     {
-        if ($this->sellIn > 10) {
-            $this->quality += 1;
-        } elseif ($this->sellIn <= 10 && $this->sellIn > 5) {
-            $this->quality += 2;
-        } elseif ($this->sellIn <= 5 && $this->sellIn > 0) {
-            $this->quality += 3;
-        } else {
+        $this->sellIn -= 1;
+
+        if ($this->sellIn < 0) {
             $this->quality = 0;
+
+            return;
+        }
+
+        $this->quality += 1;
+
+        if ($this->sellIn < 10) {
+            $this->quality += 1;
+        }
+
+        if ($this->sellIn < 5) {
+            $this->quality += 1;
         }
 
         if ($this->quality > 50) {
             $this->quality = 50;
         }
-
-        $this->sellIn--;
     }
 }
