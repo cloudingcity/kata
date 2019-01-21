@@ -11,17 +11,15 @@ function squareInRectangle(int $length, int $width)
     }
 
     $output = [];
-    $area = $length * $width;
 
-    while ($area > 0) {
-        $minSide = min($length, $width);
-        $maxSide = max($length, $width);
-        $maxSquare = pow($minSide, 2);
-        $area = $area - $maxSquare;
-        $output[] = $minSide;
-
-        $length = $maxSide - $minSide;
-        $width = $minSide;
+    while ($width > 0) {
+        if ($length > $width) {
+            $output[] = $width;
+            $length -= $width;
+        } else {
+            $output[] = $length;
+            $width -= $length;
+        }
     }
 
     return $output;
